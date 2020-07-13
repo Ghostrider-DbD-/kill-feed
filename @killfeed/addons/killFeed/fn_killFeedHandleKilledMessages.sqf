@@ -33,6 +33,7 @@ switch (true) do
 	// If the player killed themselves somehow then handle it here
 	case (_victim isEqualTo _killer || isNull _killer): {
 		private _sapperParts = nearestObjects[player,["SapperHead_SIM_EPOCH","SapperCorpse_SIM_EPOCH"],5];
+		diag_log format["killFeed: _this = %1 || _sapperParts = %2",_this,_sapperParts];
 		if (_sapperParts isEqualTo []) then 
 		{
 			private _unknown = [
@@ -95,18 +96,15 @@ switch (true) do
 				_wepPic					
 			];
 			_dyna2Text = format["
-				<t align='left'size='0.9'color='%5'>%1 </t>
+				<t align='left'size='0.9'color='#5882FA'>%1 </t>
 				<img size='1.0'align='left' image='%2'/>
-				<t align='left'size='0.9'color='%6'> %3 </t>
-				<t align='left'size='0.9'color='%7'>[%4m]</t>
+				<t align='left'size='0.9'color='#c70000'> %3 </t>
+				<t align='left'size='0.9'color='#FFCC00'>[%4m]</t>
 				",
 				_nameKiller,
 				_wepPic,
 				_nameVictim,
-				_distance,
-				_killerNameColor,
-				_victimNameColor,
-				_distanceColor
+				_distance
 			];
 			_logText = format["KILL_FEED <INFANTRY>: %1",_text];
 		} else {  //  _killer must be in a vehicle

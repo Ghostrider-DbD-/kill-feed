@@ -18,8 +18,8 @@ class CfgPatches {
 class CfgBuild {
     class killFeed {
         build = 1;
-        version = 0.1;
-        date = "7-12-20";
+        version = 0.11;
+        date = "7-13-20";
     };
 };
 
