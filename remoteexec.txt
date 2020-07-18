@@ -1,1 +1,1 @@
-5 "" !"KF_fnc_killFeedHandlePlayerDeath"
+5 "" !"KF_fnc_(killFeedHandlePlayerDeath|buryBody)"

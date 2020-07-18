@@ -11,7 +11,7 @@ addMissionEventHandler ["PlayerConnected",
     if (isNil "KF_fnc_killFeedHandleKilledMessages") then {diag_log "KILL_FEED: client function not defined"};
 	_owner publicVariableClient "KF_fnc_killFeedHandleKilledMessages";
     _owner publicVariableClient "KF_fnc_studyBody";
-    _owner publicVariableClient "KF_fnc_buryBody";
+    _owner publicVariableClient "KF_fnc_buryBody_client";
 }];
 
 private _build = getNumber(configFile >> "CfgBuild" >> "killFeed" >> "build");

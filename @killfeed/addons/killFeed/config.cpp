@@ -37,6 +37,7 @@ class CfgFunctions {
             class killFeedHandlePlayerDeath {};
             class studyBody {};
             class buryBody {};
+            class buryBody_client {};
         };
     };
 };
