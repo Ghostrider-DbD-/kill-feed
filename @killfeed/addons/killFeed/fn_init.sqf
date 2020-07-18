@@ -10,16 +10,10 @@ addMissionEventHandler ["PlayerConnected",
     diag_log format["KILL_FEED: player %1 joining server, killfeed being configured",_name];
     if (isNil "KF_fnc_killFeedHandleKilledMessages") then {diag_log "KILL_FEED: client function not defined"};
 	_owner publicVariableClient "KF_fnc_killFeedHandleKilledMessages";
+    _owner publicVariableClient "KF_fnc_studyBody";
+    _owner publicVariableClient "KF_fnc_buryBody";
 }];
-/*
-class CfgBuild {
-    class killFeed {
-        build = 1;
-        version = 0.1;
-        date = "7-5-20";
-    };
-};
-*/
+
 private _build = getNumber(configFile >> "CfgBuild" >> "killFeed" >> "build");
 private _ver = getNumber(configFile >> "CfgBuild" >> "killFeed" >> "build");
 private _date = getText(configFile >> "CfgBuild" >> "killFeed" >> "date");

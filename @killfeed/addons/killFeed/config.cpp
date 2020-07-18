@@ -35,6 +35,8 @@ class CfgFunctions {
             file="killFeed";
             class killFeedHandleKilledMessages {};
             class killFeedHandlePlayerDeath {};
+            class studyBody {};
+            class buryBody {};
         };
     };
 };

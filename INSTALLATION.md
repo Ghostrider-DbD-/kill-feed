@@ -24,6 +24,8 @@ CLIENT [Mission.pbo]:
 BATTLEYE:
 
 8. Merge remoteexec.txt to add the exception
+9. Merge createVehicle.txt with your current file to add the exception
+10. merge deleteVehicle.txt with your current file to add the exceptions
 
 INFISTAR: No changes needed.
 
