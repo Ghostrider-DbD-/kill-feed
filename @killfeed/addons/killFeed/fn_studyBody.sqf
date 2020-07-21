@@ -4,7 +4,7 @@ params["_corpse"];
 private _tod =	_corpse getVariable["TOD",0];
 private _killer = _corpse getVariable["KILLER","unknown"];
 private _weapon = _corpse getVariable["WEAPON","mysterious force"];
-private _distance = _corpse getVariable["DISTANCE","somewhere nearby"];
+private _distance = _corpse getVariable["DISTANCE",0];
 private _victim = _corpse getVariable["VICTIM_NAME","John Doe"];
 private["_time","_range"];
 switch (true) do 
@@ -19,7 +19,7 @@ switch (true) do
 {
 	case (_distance < 30): {_range = "really close"};
 	case (_distance >= 30 && _distance < 100): {_range = "not too far away"};
-	case (_distance >=100 && _distance < 300): {_range = "well, it took some skill"};
+	case (_distance >= 100 && _distance < 300): {_range = "well, it took some skill"};
 	case (_distance >= 300 && _distance < 1000): {_range = "it was a good shot"};
 	case (_distance >= 1000): {_range = "it was a great shot"};
 	default {_range = "somewhere nearby"};
