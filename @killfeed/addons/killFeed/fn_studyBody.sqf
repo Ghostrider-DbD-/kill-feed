@@ -42,7 +42,7 @@ private _parsedMessage = if (_killer isEqualTo _victim) then
 		<t size='1.25'align='Center'shadow='1'color='#c70000'>%2</t><br/>
 		<t size='1'align='Center'shadow='1'> With Weapon:</t><br/>
 		<t size='1'align='Center'shadow='1'> From Distance:</t><br/>
-		<t size='1.25'align='Center'shadow='1'color='#FFCC00'>%5m</t><br/>",
+		<t size='1.25'align='Center'shadow='1'color='#FFCC00'>%4m</t><br/>",
 		_victim,
 		_killer,
 		_weapon,
