@@ -90,7 +90,7 @@ switch (true) do
 					"%1 died - well, its Arma"
 				];
 			};
-	};
+		};
 		_text = format[selectRandom _unknown,_nameVictim];
 		_strText = parseText format["<t align 'Center' shadow='2'>%1</t>",_text];
 		_dynaText = format["<t size='0.70' align='left' shadow='1'>%1</t>",_text];
@@ -127,8 +127,8 @@ switch (true) do
 		private _wepDisplayName = getText(configFile >> "CfgWeapons" >> _weapon >> "displayName");
 		private _wepPic = getText(configFile >> "CfgWeapons" >> _weapon >> "picture");
 		private _distance = _victim distance _killer;
-		private _enemyType = if (isPlayer _killer) then {"Player"} else {"AI"};		
-		_text = format["%1 was killed by %5 - %2 with %3 from %4m",_nameVictim, _nameKiller, _wepDisplayName, _distance, _enemyType];		
+		private _enemyType = if (isPlayer _killer) then {"Player"} else {"AI"};	
+		_text = format["%1 was killed by %5 - %2 with %3 from %4m | isBurnt = %6",_nameVictim, _nameKiller, _wepDisplayName, _distance, _enemyType,_isBurnt];		
 		_logText = format["KILL_FEED <Man>: %1",_killer];
 		if (vehicle _killer isEqualTo _killer) then // killer was on foot 
 		{
@@ -241,9 +241,10 @@ switch (true) do
 		case "showSystemChat": {systemChat _text};
 		case "showCutText": {cutText[_text,"PLAIN DOWN",-1,false,false]};
 		case "showEpochMessage": {[_text,10] call EPOCH_message};
-		case "showDynamicText": {[_dynaText,[safezoneX + 0.01 * safezoneW,2.0],[safezoneY + 0.01 * safezoneH,0.3],30,0.5] spawn BIS_fnc_dynamicText};
+		case "showDynamicText": {
+			[_dynaText,[safezoneX + 0.01 * safezoneW,2.0],[safezoneY + 0.02 * safezoneH,0.3],30] spawn BIS_fnc_dynamicText};
 		case "showDynamicText2": {
-			[_dyna2Text,[safezoneX + 0.01 * safezoneW,2.0],[safezoneY + 0.01 * safezoneH,0.3],30,0.5] spawn BIS_fnc_dynamicText;
+			[_dyna2Text,[safezoneX + 0.01 * safezoneW,2.0],[safezoneY + 0.02 * safezoneH,0.3],30] spawn BIS_fnc_dynamicText;
 		};
 	};
 } forEach _messages;

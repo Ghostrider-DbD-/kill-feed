@@ -25,10 +25,52 @@ switch (true) do
 	default {_range = "somewhere nearby"};
 };
 
-if (_killer isEqualTo _victim) then 
+private _message = if (_killer isEqualTo _victim) then 
 {
-	[format["%1 died %2 ago of unknown causes",_victim,_time],10] call EPOCH_message;
+	format["%1 died %2 ago of unknown causes",_victim,_time];
 } else {
-	[format["%1 was killed %2 ago by %3 using %4 from %5",_victim,_time,_killer,_weapon,_range],10] call EPOCH_message;
+	format["%1 was killed %2 ago by %3 using %4 from %5",_victim,_time,_killer,_weapon,_range];
 };
 
+private _parsedMessage = if (_killer isEqualTo _victim) then 
+{
+	_message 
+} else {
+	parseText format["
+		<t size='1.25'align='center'shadow='1'color='#5882FA'>/%1</t><br/>
+		<t size='1.25'align='Center'shadow='1'> Was Killed By</t><br/>
+		<t size='1.25'align='Center'shadow='1'color='#c70000'>%2</t><br/>
+		<t size='1'align='Center'shadow='1'> With Weapon:</t><br/>
+		<t size='1'align='Center'shadow='1'> From Distance:</t><br/>
+		<t size='1.25'align='Center'shadow='1'color='#FFCC00'>%5m</t><br/>",
+		_victim,
+		_killer,
+		_weapon,
+		_range
+	];
+};
+
+private _cue = [];
+{
+	private _p = getNumber(missionConfigFile >> "CfgKillMessages" >> "studyBody" >> _x);
+	//diag_log format["screening _x = %1 with _p = %2",_x,_p];
+	if (_p == 1) then {_cue pushBack _x};
+} forEach [
+	"displaySystemChat",
+	"displayHint",
+	"displayEpochMessage",
+	"displayCutText"
+];
+//diag_log format["_cue = %1",_cue];
+{
+	//diag_log format["_x = %1",_x];
+	switch (_x) do
+	{
+		case "displaySystemChat": {systemChat _message};
+		case "displayHint": {hint _parsedMessage};
+		case "displayEpochMessage": {[_message,10] call EPOCH_message};
+		case "displayCutText": {cutText [_parsedMessage,"PLAIN DOWN",10,false,true]};	
+	};
+} forEach _cue;
+
+//[_message,10] call EPOCH_message;
