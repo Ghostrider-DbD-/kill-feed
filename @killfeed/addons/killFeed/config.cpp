@@ -17,9 +17,9 @@ class CfgPatches {
 
 class CfgBuild {
     class killFeed {
-        build = 3;
-        version = 0.14;
-        date = "7-21-20";
+        build = 4;
+        version = 0.15;
+        date = "7-25-20";
     };
 };
 

@@ -1,4 +1,7 @@
-
+/*
+    Copyright 2020
+    By Ghostrider-GRG-
+*/
 
 params["_body"];
 private _victim = _body getVariable["VICTIM_NAME","John Doe"];
@@ -12,7 +15,7 @@ player playMoveNow "AmovPercMstpSlowWrflDnon_Salute";
 private _start = diag_tickTime;
 while { (player distance _grave) < 150 && (diag_tickTime - _start) < 300} do 
 {
-	systemChat format["Waited for %1 distance is %2",diag_tickTime - _start,player distance _grave];
+	//systemChat format["Waited for %1 distance is %2",diag_tickTime - _start,player distance _grave];
 	uiSleep 5;
 };
 private _m = "Grave has vanished";

@@ -22,7 +22,12 @@ if ( getNumber(missionConfigFile >> "CfgKillMessages" >> "enableStudyBody") == 1
 	if !(isNull _killer) then 
 	{
 		_victim setVariable["KILLER",name _killer,true];
-		_victim setVariable["WEAPON",currentWeapon _killer,true];
+		if (vehicle _killer isEqualTo _killer) then 
+		{
+			_victim setVariable["WEAPON",currentWeapon _killer,true];
+		} else {
+			_victim setVariable["WEAPON",vehicle _killer,true];
+		};
 		_victim setVariable["DISTANCE",_killer distance _victim,true];
 	};
 	_victim setVariable["VICTIM_NAME",name _victim,true];
