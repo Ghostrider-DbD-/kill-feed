@@ -12,7 +12,7 @@ class studyBody
 
 class burryBody 
 {
-	condition = "dyna_isDeadPlayer && (getNumber(missionConfigFile >> 'CfgKillMessages' >> 'enableBuryBody') == 1)";
+	condition = "dyna_cursorTarget isKindOf 'Man' && (getNumber(missionConfigFile >> 'CfgKillMessages' >> 'enableBuryBody') == 1)";
 	action = "[dyna_cursorTarget] spawn KF_fnc_buryBody_client";
 	icon = "\x\addons\a3_epoch_community\icons\Halloween_masks\skullhead_icon_ca.paa";
 	toolTip = "Burry Body";
