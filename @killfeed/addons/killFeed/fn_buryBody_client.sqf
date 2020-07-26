@@ -1,26 +1,30 @@
 /*
     Copyright 2020
     By Ghostrider-GRG-
+
+	Things that need to happen on the client: animations
 */
 
 params["_body"];
-private _victim = _body getVariable["VICTIM_NAME","John Doe"];
-private _grave = getPosATL _body;
-player playMove "AinvPknlMstpSlayWrflDnon_medic";
+
+if (isNil "KF_graveMonitorRunning") then 
+{
+	/* start a script that monitors graves created by the player and deletes them when expired */
+	[] spawn KF_fnc_monitorGraves;
+	KF_graveMonitorRunning = 1;
+};
+
+/* Ask the server to build the grave */
 ['setupGrave',[_body,player]] remoteExec["KF_fnc_buryBody",2];
-uiSleep 5;
+
+/* run some animations and do a little sleep then notify the player the grave was made */
+private _victim = _body getVariable["VICTIM_NAME","John Doe"];
+player playMove "AinvPknlMstpSlayWrflDnon_medic";
 [format[" %1 has been buried - May they rest in peace",_victim],10] call EPOCH_message;
+uiSleep 5;
 ["The grave will despawn in 5 minutes or if you are more than 150 meters away",10] call EPOCH_message;
 player playMoveNow "AmovPercMstpSlowWrflDnon_Salute";
-private _start = diag_tickTime;
-while { (player distance _grave) < 150 && (diag_tickTime - _start) < 300} do 
-{
-	//systemChat format["Waited for %1 distance is %2",diag_tickTime - _start,player distance _grave];
-	uiSleep 5;
-};
-private _m = "Grave has vanished";
-[_m,10] call EPOCH_message;
-systemChat _m;
-['deleteGrave',[player]] remoteExec["KF_fnc_buryBody",2];
+
+
 
 

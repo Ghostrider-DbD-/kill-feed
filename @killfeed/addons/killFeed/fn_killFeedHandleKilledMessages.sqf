@@ -212,13 +212,13 @@ switch (true) do
 				_wepPic = "\a3\ui_f\data\gui\cfg\hints\Driving_ca.paa";
 			};
 			_strText = format ["
-				<t size='1.25'align='center'shadow='1'color='#5882FA'>%1</t><br/>
-				<t size='1.25'align='Center'shadow='1'> Killed: </t>
-				<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%2</t><br/>
-				<t size='1'align='Center'shadow='1'> %3 </t><br/>
-				<img size='3.5'shadow='1'image='%4'/><br/>
-				<t size='1'align='Center'shadow='1'> Distance: </t>
-				<t size='1.25'align='Center'shadow='1'color='#FFCC00'>[%5]</t><br/>",
+				<t size='1.25'align='center' color='#5882FA'>%1</t><br/>
+				<t size='1.25'align='Center'> Killed: </t>
+				<t size='1.25'align='Center' color='#6B8E23'>%2</t><br/>
+				<t size='1'align='Center'> %3 </t><br/>
+				<img size='3.5' image='%4'/><br/>
+				<t size='1'align='Center> Distance: </t>
+				<t size='1.25'align='Center' color='#FFCC00'>[%5]</t><br/>",
 				_nameKiller,
 				_nameVictim,
 				_wepDisplayName,
@@ -226,26 +226,26 @@ switch (true) do
 				_distance
 			];
 			_cutTxt = format["
-				<t size='1.25'align='center'shadow='1'color='#5882FA'>%1</t><br/>
-				<t size='1.25'align='Center'shadow='1'>Killed </t>
-				<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%2</t><br/>
-				<t size='1'align='Center'shadow='1'> With:</t>
-				<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%3</t><br/>	
-				<t size='1'align='Center'shadow='1'> From:</t>
-				<t size='1.25'align='Center'shadow='1'color='#FFCC00'>[%4m]</t><br/>",
+				<t size='1.25'align='center' color='#5882FA'>%1</t><br/>
+				<t size='1.25'align='Center' >Killed </t>
+				<t size='1.25'align='Center' color='#6B8E23'>%2</t><br/>
+				<t size='1'align='Center' > With:</t>
+				<t size='1.25'align='Center' color='#6B8E23'>%3</t><br/>	
+				<t size='1'align='Center'> From:</t>
+				<t size='1.25'align='Center' color='#FFCC00'>[%4m]</t><br/>",
 				_nameKiller,
 				_nameVictim,					
 				_vehicleType,
 				_distance
 			];
 			_dynaText = format["
-				<t size='0.75'align='left'shadow='1'color='#5882FA'>%1</t>
-				<t size='0.75'align='left'shadow='1'>  Killed  </t>
-				<t size='0.75'align='left'shadow='1'color='#c70000'>%2</t><br/>
-				<t size='0.75'align='left'shadow='1'> With: </t>
+				<t size='0.75'align='left' color='#5882FA'>%1</t>
+				<t size='0.75'align='left'>  Killed  </t>
+				<t size='0.75'align='left' color='#c70000'>%2</t><br/>
+				<t size='0.75'align='left'> With: </t>
 				<img size='1.0'align='left' image='%3'/>
-				<t size='0.75'align='left'shadow='1'> From: </t>
-				<t size='0.75'align='left'shadow='1'color='#FFCC00'>[%4m]</t><br/>
+				<t size='0.75'align='left'> From: </t>
+				<t size='0.75'align='left' color='#FFCC00'>[%4m]</t><br/>
 				",
 				_nameKiller,
 				_nameVictim,
@@ -270,7 +270,6 @@ switch (true) do
 
 
 {
-	//diag_log format["_messages %1 = %2",_forEachIndex,_x];
 	switch (_x) do 
 	{
 		case "showHint": {hint parseText _strText};

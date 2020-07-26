@@ -4,7 +4,7 @@
 */
 
 params["_corpse"];
-private _tod =	_corpse getVariable["TOD",0];
+private _tod =	_corpse getVariable["TOD",-1];
 private _killer = _corpse getVariable["KILLER","unknown"];
 private _weapon = _corpse getVariable["WEAPON","mysterious force"];
 
@@ -26,7 +26,12 @@ private _parsedMessage = "_parsedMessage undefined";
 {
 	_victim = _corpse getVariable["VICTIM_NAME","John Doe"];
 } else {
-	_victim = "NPC";
+	if !(_corpse getVariable['AI_SLOT', -1] == -1) then 
+	{
+		_victim = "Trader";
+	} else {
+		_victim = "NPC";
+	};
 };
 
 switch (true) do 
@@ -49,7 +54,7 @@ switch (true) do
 
 if (_killer isEqualTo _victim) then 
 {
-	_message = format["%1 died of unknown causes and the %2",_victim,_time];
+	_message = format["%1 died of unknown causes and %2",_victim,_time];
 } else {
 	_message = format["%1 was killed by %3 using %4 from %5 %2",_victim,_time,_killer,_weapon,_range];
 };
@@ -71,7 +76,7 @@ private _cue = [];
 	switch (_x) do
 	{
 		if (isNil "_message") then {_message = "_message undefined"} else {if (_message isEqualTo "") then {_message = "_message = ''"}};
-		diag_log format["evaluating studyBody message %1 with _message = %2",_x,_message];
+		//diag_log format["evaluating studyBody message %1 with _message = %2",_x,_message];
 
 		case "displaySystemChat": {
 			systemChat _message;
@@ -80,29 +85,32 @@ private _cue = [];
 			if (_killer isEqualTo _victim) then 
 			{
 				_parsedMessage = format["
-					<t size='1.25'align='center'shadow-'1'color='#5882FA'>%1 died</t><br/>
-					<t size='1.25'align='center'shadow='1'color='#FFFFFF'>Of Unknown Causes</t><br/>				
-					<t size='1.25'align='center'shadow='1'color='#FFFFFF'>%2</t>
+					<t size='1.25'align='center' color='#5882FA'>%1 died</t><br/>
+					<t size='1.25'align='center' color='#FFFFFF'>Of Unknown Causes</t><br/>				
+					<t size='1.25'align='center' color='#FFCC00'>%2</t><br/>
 					",
 					_victim,
 					_time
 				]; 
 			} else {
 				_parsedMessage = format["
-						<t size='1.25'align='center'shadow='1'color='#5882FA'>%1</t><br/>
-						<t size='1.25'align='Center'shadow='1'> Was Killed By </t>
-						<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%2</t><br/>
-						<t size='1'align='Center'shadow='1'> With Weapon: </t>
-						<t size='1'align='Center'shadow='1' color='#ff0000'> %3 </t><br/>
-						<t size='1'align='Center'shadow='1'> From Distance: </t>
-						<t size='1.25'align='Center'shadow='1'color='#FFCC00'>%4</t><br/>",
+						<t size='1.25'align='center'color='#5882FA'>%1</t><br/>
+						<t size='1.25'align='Center'> Was Killed By </t>
+						<t size='1.25'align='Center'color='#6B8E23'>%2</t><br/>
+						<t size='1'align='Center'> With Weapon: </t>
+						<t size='1'align='Center' color='#ff0000'> %3 </t><br/>
+						<t size='1'align='Center'> From Distance: </t>
+						<t size='1.25'align='Center'color='#FFCC00'>%4</t><br/>
+						<t size='1.25'align='center'color='#FFCC00'>%5</t>
+						",
 						_victim,
 						_killer,
 						_weapon,
-						_range
+						_range,
+						_time
 					];
 			};		
-			diag_log format["studyBody: _parsedMessage = %1",_parsedMessage];
+			//diag_log format["studyBody: _parsedMessage = %1",_parsedMessage];
 			hint parseText _parsedMessage;
 			[] spawn {uisleep 10;  hint ""};
 		};
@@ -115,29 +123,29 @@ private _cue = [];
 			if (_killer isEqualTo _victim) then 
 			{
 				_cutTextMessage = format["
-					<t size='1.25'align='center'shadow-'1'color='#5882FA'>%1 died</t><br/>
-					<t size='1.25'align='center'shadow='1'color='#FFFFFF'>Of Unknown Causes</t><br/>				
-					<t size='1.25'align='center'shadow='1'color='#FFFFFF'>%2</t>
+					<t size='1.25'align='center'color='#5882FA'>%1 died</t><br/>
+					<t size='1.25'align='center'color='#FFFFFF'>Of Unknown Causes</t><br/>				
+					<t size='1.25'align='center'color='#FFCC00'>%2</t>
 					",
 					_victim,
 					_time
 				];
 			} else {
 				_cutTextMessage = format["
-					<t size='1.25'align='center'shadow='1'color='#5882FA'>%1</t><br/>
-					<t size='1.25'align='Center'shadow='1'> Was Killed By</t>
-					<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%2</t><br/>
-					<t size='1'align='Center'shadow='1'> With Weapon:</t>
-					<t size='1.25'align='Center'shadow='1'color='#6B8E23'>%3</t><br/>	
-					<t size='1'align='Center'shadow='1'> From Distance:</t><br/>
-					<t size='1.25'align='Center'shadow='1'color='#FFCC00'>%4</t><br/>",
+					<t size='1.25'align='center' color='#5882FA'>%1</t><br/>
+					<t size='1.25'align='Center'> Was Killed By</t>
+					<t size='1.25'align='Center' color='#6B8E23'>%2</t><br/>
+					<t size='1'align='Center'> With Weapon:</t>
+					<t size='1.25'align='Center' color='#6B8E23'>%3</t><br/>	
+					<t size='1'align='Center'> From Distance:</t><br/>
+					<t size='1.25'align='Center' color='#FFCC00'>%4</t><br/>",
 					_victim,
 					_killer,
 					_weapon,
 					_range
 				];
 			};	
-			diag_log format["studyBody: _cutTextMessage = %1",_cutTextMessage];	
+			//diag_log format["studyBody: _cutTextMessage = %1",_cutTextMessage];	
 			cutText [_cutTextMessage,"PLAIN DOWN",1,false,true];
 			[] spawn {uiSleep 10; cutText ["","PLAIN_DOWN",1,false,false]};
 		};	

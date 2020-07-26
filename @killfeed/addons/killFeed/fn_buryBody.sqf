@@ -1,6 +1,8 @@
 /*
     Copyright 2020
     By Ghostrider-GRG-
+
+	Server-side events that need to be done to get the inventory of the player and add it to a grave then demarcate the grave site with a grave !
 */
 
 params["_mode","_payload"];
@@ -14,7 +16,6 @@ switch (_mode) do
 		{
 			if !(_x isEqualTo "") then 
 			{
-				//diag_log format["_x = %1",_x];
 				switch (true) do 
 				{
 					case (isClass(configFile >> "CfgMagazines" >> _x)): {
@@ -47,19 +48,18 @@ switch (_mode) do
 			(backpackItems _body)+
 			[primaryWeapon _body,handgunWeapon _body,secondaryWeapon _body,uniform _body,vest _body,backpack _body,headgear _body,goggles _body];
 
-		_pos = _pos getPos[2.0,random(359)];
+		_pos = _pos getPos[2.5,random(359)];
 		private _grave = createVehicle[selectRandom ["Land_Grave_dirt_F","Land_Grave_forest_F","Land_Grave_rocks_F"],_pos,[],3,"CAN_COLLIDE"];
 		_grave setVectorUp (surfaceNormal _pos);
 		private _cutter = createVehicle["Land_ClutterCutter_medium_F",getPos _grave];
 		_cutter setVectorUp (surfaceNormal getPos _cutter);
 		deleteVehicle _body;
 		removeFromRemainsCollector [_body];
-		_player setVariable["KF_grave",[_crate,_grave,_cutter]];
+		[_crate,_grave,_cutter] remoteExec ["KF_fnc_addMonitoredGrave",_player];
 	};
+
 	case 'deleteGrave': {
-		_payload params["_player"];
-		private _graveItems = _player getVariable["KF_grave",[]];
-		{deleteVehicle _x} forEach _graveItems;
+		{deleteVehicle _x} forEach _payload;
 	};
 };
 
