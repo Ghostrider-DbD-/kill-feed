@@ -17,8 +17,8 @@ class CfgPatches {
 
 class CfgBuild {
     class killFeed {
-        build = 6;
-        version = 0.16;
+        build = 7;
+        version = 0.17;
         date = "7-26-20";
     };
 };
@@ -33,7 +33,6 @@ class CfgFunctions {
         };
         class functions {
             file="killFeed";
-            class addMonitoredGrave {};  //  Run on client
             class killFeedHandleKilledMessages {};
             class killFeedHandlePlayerDeath {};
             class monitorGraves {};  //  Run on client

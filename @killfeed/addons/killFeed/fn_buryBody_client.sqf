@@ -7,15 +7,8 @@
 
 params["_body"];
 
-if (isNil "KF_graveMonitorRunning") then 
-{
-	/* start a script that monitors graves created by the player and deletes them when expired */
-	[] spawn KF_fnc_monitorGraves;
-	KF_graveMonitorRunning = 1;
-};
-
 /* Ask the server to build the grave */
-['setupGrave',[_body,player]] remoteExec["KF_fnc_buryBody",2];
+['setupGrave', _body, player] remoteExec["KF_fnc_buryBody",2];
 
 /* run some animations and do a little sleep then notify the player the grave was made */
 private _victim = _body getVariable["VICTIM_NAME","John Doe"];
