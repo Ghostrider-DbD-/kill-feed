@@ -17,9 +17,9 @@ class CfgPatches {
 
 class CfgBuild {
     class killFeed {
-        build = 7;
-        version = 0.17;
-        date = "7-26-20";
+        build = 9;
+        version = 0.19;
+        date = "10-17-20";
     };
 };
 
@@ -39,6 +39,7 @@ class CfgFunctions {
             class studyBody {};     //  Run on client
             class buryBody {};
             class buryBody_client {};
+            class isZed {};
         };
     };
 };

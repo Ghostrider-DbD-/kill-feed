@@ -12,6 +12,7 @@ addMissionEventHandler ["PlayerConnected",
 	_owner publicVariableClient "KF_fnc_killFeedHandleKilledMessages";
     _owner publicVariableClient "KF_fnc_studyBody";
     _owner publicVariableClient "KF_fnc_buryBody_client";
+    _owner publicVariableClient "KF_fnc_isZed";
 }];
 [] spawn KF_fnc_monitorGraves;
 private _build = getNumber(configFile >> "CfgBuild" >> "killFeed" >> "build");

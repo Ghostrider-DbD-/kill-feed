@@ -86,7 +86,7 @@ switch (_mode) do // Just in case there need to be more modes
 			[format[" %1 has been buried - May they rest in peace",_body getVariable["VICTIM_NAME","John Doe"]],10] remoteExec["EPOCH_message",_player];			
 		} else {
 			_graveType = "Land_HumanSkull_F";
-			[format["The remains were used for Sapper food - only a skull was left"],10] remoteExec["EPOCH_message",_player];			
+			[format["The remains were used for %1 food - only a skull was left",selectRandom["Sapper","Cloaker","Zombie"]],10] remoteExec["EPOCH_message",_player];			
 		};
 
 		private _grave = createVehicle[_graveType,_pos,[],0,"CAN_COLLIDE"];
