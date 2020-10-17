@@ -18,12 +18,12 @@ CLIENT [Mission.pbo]:
 5. Merge the contents of description.ext from your download into description.ext in your mission.
 6. Merge the contents of \epoch_config\configs\CfgRemoteExec.hpp from your download with those in your mission
 6. Merge the contents of \epoch_code\customs\EPOCH_custom_EH_Killed.sqf in yoru download with the same file in your mission.
-6. Adjust configuration in addons\killNessages\/cfgJukkNessages.hpp to suit your needs.
+6. Adjust configuration in addons\killNessages\CfgKellMessages.hpp to suit your needs.
 7. Repack your miission .pbo.
 
 BATTLEYE:
 
-8. Merge remoteexec.txt to add the exception
+8. Merge remoteexec.txt with the corresponding file in your \SC\battleye folder
 
 INFISTAR: No changes needed.
 
